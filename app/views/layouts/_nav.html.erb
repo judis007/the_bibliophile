@@ -1,0 +1,49 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to "The Bibliophile", root_path, class: 'navbar-brand', style: "font-family: 'Nothing You Could Do', cursive; font-size: 25px;" %>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      <form class="d-flex">
+        <%= form_with url: "/search", method: :get do |form| %>
+          <%= form.text_field :query, class: 'form-control me-2', placeholder: 'Search for books...' %>
+          <%= button_tag type: 'submit', class: "btn btn-warning", id: "register-button" do %>
+            <i class="fa fa-search" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </form>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <% if seller_signed_in? %>
+            <%= link_to "ADD BOOK", new_book_path, class: 'nav-link active' %>
+          <% end %>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            CATEGORIES
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% Category.all.each do |category| %>
+              <%= link_to category.name, books_path(category: category.name), class: "dropdown-item #{'active' if params[:category] == category.name }" %>
+            <% end %><!-- Here the books_path(category: category.name) will pass the category thru the URL -->
+          </div>
+        </li>
+        
+          <% if seller_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link active disabled" aria-current="page" href="#">Hello, <%= current_seller.email.split('@').first.capitalize %></a>
+            </li>
+            <%= link_to "Sign Out", destroy_seller_session_path,method: :delete, data: {confirm: 'Do you want to sign out?'}, class: 'nav-link active'%>
+          <% else %>
+            <%= link_to "Sign In", new_seller_session_path, class: 'nav-link active' %>
+          <% end %>
+        
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,48 @@
+<%= form_with model: @book, local: true do |f| %>
+
+    <div class="mb-3">
+        <%= f.collection_select :category_id, Category.all, :id, :name, { include_blank: 'Select a Category *' }, required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.text_field :name, placeholder: 'Name of the book *', class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.text_field :author, placeholder: 'Name of the author *', class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.text_field :language, placeholder: 'Language of publication *', class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.text_field :publisher, placeholder: 'Publisher *', class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Date of publication *</label>
+        <%= f.date_field :date_of_publication, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.text_field :isbn_10, placeholder: 'ISBN-10 *', class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.text_area :description, placeholder: 'Description *', class: "form-control", rows: '5', required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.number_field :amount, placeholder: 'Amount *', class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Select a thumbnail image *</label>
+        <%= f.file_field :thumbnail, class: "form-control-file", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= f.submit "Add to the library", class: "btn btn-success" %>
+    </div>
+<% end %>

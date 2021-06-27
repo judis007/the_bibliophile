@@ -1,0 +1,32 @@
+
+
+
+<div class = 'row'>
+    <div class = 'col-md-3'>
+        <%= image_tag @book.thumbnail, class: 'main_thumbnail' %>
+    </div>
+    <div class = 'col-md-6'>
+        <h2><strong><%= @book.name.upcase %></strong></h2>
+        <p class = 'small'>by <%= @book.author.split(' ').each { |word| word.capitalize! }.join(' ') %></p>
+        <br>
+        <h4>Rs <%= @book.amount %></h4>
+        <br>
+        <h6> <%= @book.description %></h6>
+        <br>
+        <div class = 'row'>
+            <div class = 'col-md-3'>
+                <i class="fa fa-globe"></i> <%= @book.language.capitalize %>
+            </div>
+            <div class = 'col-md-3'>
+                <i class="fa fa-user"></i> <%= @book.publisher.upcase %>
+            </div>
+            <div class = 'col-md-3'>
+                <i class="fa fa-barcode"></i> <%= @book.isbn_10 %>
+            </div>
+            <div class = 'col-md-3'>
+                <i class="fa fa-calendar"> </i> <%= @book.date_of_publication %>
+            </div>
+        </div>
+    <div><br>
+        <button type="button" class="btn btn-warning">Buy</button>
+</div>
