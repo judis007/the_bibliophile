@@ -11,6 +11,7 @@
         <br>
         <h4>Rs <%= @book.amount %></h4>
         <br>
+
         <h6> <%= @book.description %></h6>
         <br>
         <div class = 'row'>
@@ -27,6 +28,14 @@
                 <i class="fa fa-calendar"> </i> <%= @book.date_of_publication %>
             </div>
         </div>
-    <div><br>
-        <button type="button" class="btn btn-warning">Buy</button>
+    </div><br>
+    <div class = 'col'>
+        <% if seller_signed_in? %>
+            <% if @book.seller_id == current_seller.id %>
+                <%= link_to "Delete", book_path(@book.id), class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+            <% end %>
+        <% end %>
+
+        <%= link_to "Add to Cart", book_path(@book.id), class: 'btn btn-primary' %>
+    </div>
 </div>
