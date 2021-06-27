@@ -15,8 +15,13 @@
         </p>
         
         <br><br>
-        
-      <% end %>  
+  
+      <% end %>
+      
     </div>  
+  <% end %>
+
+  <% if @books.empty? %>
+    <h3>It seems there are no books in the store! Sign in to add books.</h3>
   <% end %>
 </div>
